@@ -10,15 +10,16 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private CharacterSkinController skin;
 
-    public int playerNumber;
     public float force = 15f;
     public float topSpeed = 5f;
 
+    
     private Vector2 moveInputVector;
-
+    
     private void Start()
     {
-        skin.ChangeMaterialSettings(playerNumber);
+        skin.ChangeMaterialSettings(input.playerIndex);
+        transform.position = GameObject.FindGameObjectWithTag($"Spawn{input.playerIndex}").transform.position;
     }
 
     public void HandleMoveInput(InputAction.CallbackContext context)
@@ -39,5 +40,10 @@ public class Player : MonoBehaviour
         {
             rb.AddForce(moveVector * force);
         }
+    }
+
+    public void HandleConfirm()
+    {
+        GameObject.FindWithTag("GameController").SetActive(true);
     }
 }

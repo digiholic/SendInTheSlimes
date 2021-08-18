@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/PlayerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/PlayerControls.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerInput : IInputActionCollection, IDisposable
+public class @PlayerControls : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerInput()
+    public @PlayerControls()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""PlayerInput"",
+    ""name"": ""PlayerControls"",
     ""maps"": [
         {
             ""name"": ""Minigame"",
@@ -186,8 +186,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_Minigame_Confirm;
     public struct MinigameActions
     {
-        private @PlayerInput m_Wrapper;
-        public MinigameActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls m_Wrapper;
+        public MinigameActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Minigame_Move;
         public InputAction @Confirm => m_Wrapper.m_Minigame_Confirm;
         public InputActionMap Get() { return m_Wrapper.m_Minigame; }

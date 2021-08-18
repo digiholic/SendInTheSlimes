@@ -14,7 +14,7 @@ public class CharacterSkinController : MonoBehaviour
     public EyePosition eyeState;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         characterMaterials = GetComponentsInChildren<Renderer>();
