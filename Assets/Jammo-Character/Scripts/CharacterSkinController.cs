@@ -10,7 +10,7 @@ public class CharacterSkinController : MonoBehaviour
     public Texture2D[] albedoList;
     [ColorUsage(true,true)]
     public Color[] eyeColors;
-    public enum EyePosition { normal, happy, angry, dead}
+    public enum EyePosition { normal, happy, angry, sad, dead}
     public EyePosition eyeState;
 
     // Start is called before the first frame update
@@ -52,8 +52,11 @@ public class CharacterSkinController : MonoBehaviour
             case EyePosition.angry:
                 offset = new Vector2(.66f, 0);
                 break;
-            case EyePosition.dead:
+            case EyePosition.sad:
                 offset = new Vector2(.33f, .66f);
+                break;
+            case EyePosition.dead:
+                offset = new Vector2(0, .66f);
                 break;
             default:
                 break;

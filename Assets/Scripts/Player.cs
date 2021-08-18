@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
 
     
     private Vector2 moveInputVector;
-    
+    private bool lockControls;
+
     private void Start()
     {
         skin.ChangeMaterialSettings(input.playerIndex);
@@ -24,7 +25,8 @@ public class Player : MonoBehaviour
 
     public void HandleMoveInput(InputAction.CallbackContext context)
     {
-        moveInputVector = context.ReadValue<Vector2>();
+        if (lockControls) moveInputVector = Vector2.zero;
+        else moveInputVector = context.ReadValue<Vector2>();
     }
 
     private void Update()
@@ -44,6 +46,17 @@ public class Player : MonoBehaviour
 
     public void HandleConfirm()
     {
-        GameObject.FindWithTag("GameController").SetActive(true);
+        FindObjectOfType<GameManager>().EnemySpawner.SetActive(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeathPlane"))
+        {
+            animator.SetBool("IsFalling", true);
+            lockControls = true;
+            skin.ChangeEyeOffset(CharacterSkinController.EyePosition.dead);
+            transform.Rotate(-90f, 0f, 0f);
+        }
     }
 }
