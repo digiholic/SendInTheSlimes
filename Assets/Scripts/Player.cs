@@ -8,11 +8,18 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private PlayerInput input;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private CharacterSkinController skin;
 
+    public int playerNumber;
     public float force = 15f;
     public float topSpeed = 5f;
 
     private Vector2 moveInputVector;
+
+    private void Start()
+    {
+        skin.ChangeMaterialSettings(playerNumber);
+    }
 
     public void HandleMoveInput(InputAction.CallbackContext context)
     {

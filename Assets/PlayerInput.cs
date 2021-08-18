@@ -25,6 +25,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""3abe35f0-278b-48dd-b4e4-8d70e8edc75b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -93,6 +101,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e85d6718-7dfa-4bca-8a4b-3ba5bbebfba6"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9edfd9b-8cdb-4aaa-bae3-4dd150f8ac6f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -102,6 +132,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         // Minigame
         m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
         m_Minigame_Move = m_Minigame.FindAction("Move", throwIfNotFound: true);
+        m_Minigame_Confirm = m_Minigame.FindAction("Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -152,11 +183,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Minigame;
     private IMinigameActions m_MinigameActionsCallbackInterface;
     private readonly InputAction m_Minigame_Move;
+    private readonly InputAction m_Minigame_Confirm;
     public struct MinigameActions
     {
         private @PlayerInput m_Wrapper;
         public MinigameActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Minigame_Move;
+        public InputAction @Confirm => m_Wrapper.m_Minigame_Confirm;
         public InputActionMap Get() { return m_Wrapper.m_Minigame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -169,6 +202,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_MinigameActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MinigameActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MinigameActionsCallbackInterface.OnMove;
+                @Confirm.started -= m_Wrapper.m_MinigameActionsCallbackInterface.OnConfirm;
+                @Confirm.performed -= m_Wrapper.m_MinigameActionsCallbackInterface.OnConfirm;
+                @Confirm.canceled -= m_Wrapper.m_MinigameActionsCallbackInterface.OnConfirm;
             }
             m_Wrapper.m_MinigameActionsCallbackInterface = instance;
             if (instance != null)
@@ -176,6 +212,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Confirm.started += instance.OnConfirm;
+                @Confirm.performed += instance.OnConfirm;
+                @Confirm.canceled += instance.OnConfirm;
             }
         }
     }
@@ -183,5 +222,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     public interface IMinigameActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnConfirm(InputAction.CallbackContext context);
     }
 }

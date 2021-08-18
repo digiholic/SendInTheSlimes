@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -889,7 +889,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4757836856755875626, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
     - {fileID: 4757836856755875627, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
-    - {fileID: 4757836856755875625, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
     - {fileID: 7635726066119915157, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
 --- !u!1 &705507993
@@ -1015,6 +1014,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4155757067886491229}
   rb: {fileID: 929838716}
+  skin: {fileID: 3541754001885492270}
+  playerNumber: 0
   force: 15
   topSpeed: 5
 --- !u!136 &929838718
@@ -1072,6 +1073,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 60a40a7e-47ab-4a34-a2b0-a398aaa0cac2
     m_ActionName: Minigame/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3abe35f0-278b-48dd-b4e4-8d70e8edc75b
+    m_ActionName: Minigame/Confirm[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Minigame
@@ -1170,13 +1175,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1077995313}
   - component: {fileID: 1077995312}
+  - component: {fileID: 1077995314}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1077995312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1207,6 +1213,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1077995314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077995311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a7fd9b51fc8cb45ac00355ea810b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slimePrefab: {fileID: 3545651288339366246, guid: f8d0171901e422041b11af7600849120, type: 3}
+  spawnChance: -0.0005
+  startingSpawnChance: -0.0005
+  spawnChanceDelta: 0.0001
 --- !u!1 &1626927967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,6 +1424,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3541754002163558908, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
   m_PrefabInstance: {fileID: 284499408}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3541754001885492270 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4757836856755875625, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}
+  m_PrefabInstance: {fileID: 284499408}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3541754001885492268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb6cae19ece4b848b976432ca8b3cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4155757067886491228 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4155757067627686796, guid: bd6ee82c5e06b3f4f86113cbf8261ae1, type: 3}

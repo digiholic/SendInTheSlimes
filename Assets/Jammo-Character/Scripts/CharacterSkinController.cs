@@ -20,42 +20,13 @@ public class CharacterSkinController : MonoBehaviour
         characterMaterials = GetComponentsInChildren<Renderer>();
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            //ChangeMaterialSettings(0);
-            ChangeEyeOffset(EyePosition.normal);
-            ChangeAnimatorIdle("normal");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            //ChangeMaterialSettings(1);
-            ChangeEyeOffset(EyePosition.angry);
-            ChangeAnimatorIdle("angry");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            //ChangeMaterialSettings(2);
-            ChangeEyeOffset(EyePosition.happy);
-            ChangeAnimatorIdle("happy");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            //ChangeMaterialSettings(3);
-            ChangeEyeOffset(EyePosition.dead);
-            ChangeAnimatorIdle("dead");
-        }
-    }
     
-    void ChangeAnimatorIdle(string trigger)
+    public void ChangeAnimatorIdle(string trigger)
     {
         animator.SetTrigger(trigger);
     }
 
-    void ChangeMaterialSettings(int index)
+    public void ChangeMaterialSettings(int index)
     {
         for (int i = 0; i < characterMaterials.Length; i++)
         {
@@ -66,7 +37,7 @@ public class CharacterSkinController : MonoBehaviour
         }
     }
 
-    void ChangeEyeOffset(EyePosition pos)
+    public void ChangeEyeOffset(EyePosition pos)
     {
         Vector2 offset = Vector2.zero;
 
