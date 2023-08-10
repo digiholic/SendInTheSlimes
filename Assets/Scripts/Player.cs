@@ -38,15 +38,13 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 moveVector = Vector3.ClampMagnitude(new Vector3(moveInputVector.x, 0, moveInputVector.y),1);
-        if (rb.velocity.magnitude < topSpeed)
-        {
-            rb.AddForce(moveVector * force);
-        }
+        rb.AddForce(moveVector * force);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, topSpeed);
     }
 
     public void HandleConfirm()
     {
-        FindObjectOfType<GameManager>().EnemySpawner.SetActive(true);
+        FindObjectOfType<EnemySpawner>(true).gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,6 +55,7 @@ public class Player : MonoBehaviour
             lockControls = true;
             skin.ChangeEyeOffset(CharacterSkinController.EyePosition.dead);
             transform.Rotate(-90f, 0f, 0f);
+            Destroy(gameObject, 5f);
         }
     }
 }

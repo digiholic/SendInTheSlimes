@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
 
     public float startingSpawnChance;
     public float spawnChanceDelta;
+
     private void Start()
     {
         spawnChance = startingSpawnChance;
@@ -18,7 +19,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float spawnRandomRoll = Random.Range(0f, 1f);
+        float spawnRandomRoll = Random.Range(0f, 100f);
         if (spawnRandomRoll < spawnChance)
         {
             SpawnSlime();

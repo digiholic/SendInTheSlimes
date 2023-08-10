@@ -10,7 +10,8 @@ public class Slime : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(Vector3.left * speed);
+        rb.AddForce(Vector3.left * speed, ForceMode.Acceleration);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
     }
 
     private void OnTriggerEnter(Collider other)
